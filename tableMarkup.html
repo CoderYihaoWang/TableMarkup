@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>table markup</title>
+        <meta charset="utf8">
+        <meta name="author" content="Yihao">
+        <style>
+            html, body {
+                margin: 0;
+                background-color: wheat;
+            }
+            textarea, #result {
+                margin: 1% 5%;
+                font-size: 1em;
+                font-family: monospace;
+                width: 60%;
+                min-height: 30vh;
+                background-color: white;
+                border: inset;
+            }
+            p {
+                margin: 1% 5%;
+                font-size: 1em;
+            }
+            button {
+                margin: 1% 5%;
+                width: 60%;
+                height: 10vh;
+                font-size: 1em;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Please paste the tbody part into the box bellow</p>
+        <p>Make sure you only copy and paste the part that will go inside a tbody, do not include the contents in thead or tfoot</p>
+        <textarea></textarea><br>
+        <button onclick="generate()">Generate code</button>
+        <p>The result goes here:</p>
+        <p id="result"></p>
+        <script>
+            function generate() {
+                const res = document.getElementsByTagName("textarea")[0].value
+                            .split('\n')
+                            .map(line => "<tr><th>" 
+                                        + line.trim()
+                                                .replace(/\s+/, "</th><td>")
+                                                .replace(/\s+/g, "</td><td>")
+                                        +"</td></tr>")
+                            .join('\n')
+                document.getElementById("result").innerText = res
+            }
+        </script>
+    </body>
+</html>
