@@ -40,7 +40,9 @@
         <p id="result"></p>
         <script>
             function generate() {
-                const res = document.getElementsByTagName("textarea")[0].value
+                const res = document.getElementsByTagName("textarea")[0]
+                            .value
+                            .trim()
                             .split('\n')
                             .map(line => "<tr><th>" 
                                         + line.trim()
